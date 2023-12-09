@@ -14,7 +14,9 @@
   </head>
   <body>
     <div id="prompt-list"></div>
+    <button class="btn-primary" id="add-prompt-button">Add Prompt</button>
     <div id="prompt-form">
+      <h2 class="text-center no-margin">Add Prompt</h2>
       <label for="prompt-text">Prompt:</label>
       <textarea
         id="prompt-text"
@@ -37,7 +39,8 @@
         placeholder="e.g., creative writing, fiction"
         required
       />
-      <button id="save-prompt" class="btn-primary">Save Prompt</button>
+      <button id="save-prompt" class="btn-primary">Save</button>
+      <button class="btn-secondary" id="cancel-prompt">Cancel</button>
     </div>
     <script src="popup.js"></script>
   </body>

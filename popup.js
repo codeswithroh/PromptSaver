@@ -4,6 +4,19 @@ const promptText = document.getElementById("prompt-text");
 const promptCategory = document.getElementById("prompt-category");
 const promptTags = document.getElementById("prompt-tags");
 const saveButton = document.getElementById("save-prompt");
+const cancelButton = document.getElementById("cancel-prompt");
+const addPromptButton = document.getElementById("add-prompt-button");
+
+addPromptButton.addEventListener("click", () => {
+  const promptForm = document.getElementById("prompt-form");
+  promptForm.style.display = "flex";
+  addPromptButton.style.display = "none";
+});
+
+cancelButton.addEventListener("click", () => {
+  promptForm.style.display = "none";
+  addPromptButton.style.display = "block";
+});
 
 // Load saved prompts
 chrome.storage.sync.get((data) => {

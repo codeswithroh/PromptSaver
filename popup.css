@@ -31,12 +31,38 @@ body {
   padding: 0 4px;
 }
 
+#add-prompt-button {
+  display: block;
+  margin: 0 auto 10px auto !important;
+  width: 90%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
 .btn-primary {
   background-color: var(--primary);
   color: white;
+  margin-top: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 10px;
+  cursor: pointer;
 }
 .btn-secondary {
   background-color: var(--secondary);
+  margin-top: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 10px;
+  cursor: pointer;
 }
 
 #prompt-list {
@@ -47,8 +73,9 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin: 10px;
   word-break: break-all;
+  background-color: var(--form);
 }
 
 .prompt .category {
@@ -74,7 +101,7 @@ body {
 }
 
 #prompt-form {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 10px;
   padding: 10px;
@@ -107,7 +134,7 @@ body {
 }
 
 #prompt-form input {
-  width: 100%;
+  width: 98%;
   background-color: var(--form);
   font-family: "Poppins", sans-serif;
   font-size: 16px;
@@ -115,13 +142,4 @@ body {
   border: none;
   border-radius: 5px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-}
-
-#prompt-form button {
-  margin-top: 10px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  padding: 12px 10px;
-  cursor: pointer;
 }
