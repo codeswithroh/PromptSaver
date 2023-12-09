@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Prompts Manager",
+  "description": "Save, organize, and manage your writing prompts.",
+  "version": "1.0",
+  "permissions": ["activeTab", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Prompt Manager"
+  }
+}

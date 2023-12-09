@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompts Manager</title>
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="prompt-list"></div>
+    <div id="prompt-form">
+      <label for="prompt-text">Prompt:</label>
+      <textarea
+        id="prompt-text"
+        placeholder="Enter your prompt"
+        required
+      ></textarea>
+      <label for="prompt-category">Category:</label>
+      <select id="prompt-category">
+        <option value="school">School</option>
+        <option value="college">College</option>
+        <option value="work">Work</option>
+        <option value="fun">Fun</option>
+        <option value="others">Others</option>
+      </select>
+
+      <label for="prompt-tags">Tags (separate by commas):</label>
+      <input
+        type="text"
+        id="prompt-tags"
+        placeholder="e.g., creative writing, fiction"
+        required
+      />
+      <button id="save-prompt" class="btn-primary">Save Prompt</button>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

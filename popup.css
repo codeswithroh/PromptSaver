@@ -1,0 +1,127 @@
+:root {
+  --background: #e4edf6;
+  --form: #dae4ee;
+  --text: #070d13;
+  --accent: #8f369b;
+  --primary: #26446d;
+  --secondary: #aa7bd1;
+}
+
+.popup {
+  width: 350px;
+  max-width: 80vw;
+  margin: auto;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  border: 0;
+  width: 350px;
+  margin-top: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+.px-4 {
+  padding: 0 4px;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+.btn-secondary {
+  background-color: var(--secondary);
+}
+
+#prompt-list {
+  margin-bottom: 15px;
+}
+
+.prompt {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+
+.prompt .category {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.prompt .tags {
+  color: #666;
+  font-style: italic;
+  font-size: 15px;
+}
+
+.copy-btn {
+  background-color: var(--secondary);
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  border: none;
+}
+
+#prompt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+#prompt-form label {
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+#prompt-form textarea {
+  height: 100px;
+  resize: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  padding: 8px 6px;
+  border-radius: 5px;
+  background-color: var(--form);
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#prompt-form select {
+  width: 100%;
+  padding: 8px 2px;
+  border-radius: 5px;
+  background-color: var(--form);
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#prompt-form input {
+  width: 100%;
+  background-color: var(--form);
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  padding: 8px 6px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+#prompt-form button {
+  margin-top: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 10px;
+  cursor: pointer;
+}
