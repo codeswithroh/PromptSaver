@@ -7,5 +7,12 @@
   "action": {
     "default_popup": "popup.html",
     "default_title": "Prompt Manager"
+  },
+  "icons": {
+    "16": "logo_16.png",
+    "24": "logo_24.png",
+    "32": "logo_32.png",
+    "48": "logo_48.png",
+    "128": "logo_128.png"
   }
 }
