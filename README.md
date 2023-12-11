@@ -13,9 +13,13 @@ A simple chrome extension to save your prompts in your browser for easy access.
 ## TODO
 
 - [ ] Add a title for all the prompts
-- [ ] Add a title field in the form
+- [x] Add a title field in the form
 - [ ] Update the prompts showing view
+- [ ] Implement the dialog for the messages which will automatically disappear after 5 secs
+- [ ] Show proper message when prompts are saved
+- [ ] Show proper message when prompts are copied
+- [ ] Make the edit feature
+- [ ] Select text from any webpage, right click and it can be saved in the prompt
 - [ ] Add a search bar to search for a prompt
 - [ ] Add categories at the top, to select and view all the prompts under that category
-- [ ] Select text from any webpage, right click and it can be saved in the prompt
 - [ ] Give export option to export the prompts as csv

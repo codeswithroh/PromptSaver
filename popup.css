@@ -31,6 +31,10 @@ body {
   padding: 0 4px;
 }
 
+button {
+  cursor: pointer;
+}
+
 #add-prompt-button {
   display: block;
   margin: 0 auto 10px auto !important;
@@ -38,7 +42,12 @@ body {
 }
 
 .text-center {
+  display: block;
   text-align: center;
+}
+
+.my-4 {
+  margin: 1em 0;
 }
 
 .no-margin {

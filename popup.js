@@ -1,5 +1,6 @@
 const promptList = document.getElementById("prompt-list");
 const promptForm = document.getElementById("prompt-form");
+const promptTitle = document.getElementById("prompt-title");
 const promptText = document.getElementById("prompt-text");
 const promptCategory = document.getElementById("prompt-category");
 const promptTags = document.getElementById("prompt-tags");
@@ -44,9 +45,8 @@ function savePrompt(prompt) {
     // Add the new prompt to the array
     prompts.push(prompt);
 
-    // Save the updated array to storage
     chrome.storage.sync.set({ prompts: prompts }, () => {
-      console.log("Prompt saved successfully!");
+      alert("Prompt saved successfully!");
     });
   });
 }
@@ -58,14 +58,16 @@ saveButton.addEventListener("click", () => {
   }
 
   const prompt = {
+    title: promptTitle.value,
     text: promptText.value,
     category: promptCategory.value,
     tags: promptTags.value.split(",").map((tag) => tag.trim()),
   };
 
-  savePrompt(prompt); // Implement logic to save the prompt using chrome.storage.sync.set
+  savePrompt(prompt);
 
   // Clear form and reset focus
+  promptTitle.value = "";
   promptText.value = "";
   promptTags.value = "";
   promptText.focus();
@@ -78,7 +80,16 @@ saveButton.addEventListener("click", () => {
 
 function renderPrompts(prompts) {
   promptList.innerHTML = "";
-  prompts.forEach((prompt) => renderPrompt(prompt));
+
+  if (prompts.length) {
+    prompts.forEach((prompt) => renderPrompt(prompt));
+  } else {
+    const textElement = document.createElement("div");
+    textElement.innerText = "No prompt to show";
+    textElement.classList.add("text-center");
+    textElement.classList.add("my-4");
+    promptList.appendChild(textElement);
+  }
 }
 
 function renderPrompt(prompt) {
@@ -109,7 +120,7 @@ function renderPrompt(prompt) {
   copyButton.className = "copy-btn";
   copyButton.addEventListener("click", () => {
     navigator.clipboard.writeText(prompt.text).then(() => {
-      console.log("Prompt copied successfully!");
+      alert("Prompt copied successfully!");
     });
   });
   promptElement.appendChild(copyButton);
@@ -136,7 +147,7 @@ function renderPrompt(prompt) {
 
       // Save the updated array back to storage
       chrome.storage.sync.set({ prompts }, () => {
-        console.log("Prompt deleted successfully!");
+        alert("Prompt deleted successfully!");
 
         // Update the UI by removing the prompt element
         promptElement.remove();
