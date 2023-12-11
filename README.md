@@ -1,4 +1,4 @@
-# Prompt Saver
+# Prompt Manager
 
 A simple chrome extension to save your prompts in your browser for easy access.
 
