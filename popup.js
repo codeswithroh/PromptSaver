@@ -40,7 +40,6 @@ chrome.storage.sync.get((data) => {
 })(); // Load categories asynchronously
 
 function savePrompt(prompt) {
-  // Get existing prompts from storage (or initialize an empty array)
   chrome.storage.sync.get("prompts", (data) => {
     let prompts = data.prompts || [];
 
@@ -51,6 +50,8 @@ function savePrompt(prompt) {
       alert("Prompt saved successfully!");
     });
   });
+  promptForm.style.display = "none";
+  addPromptButton.style.display = "block";
 }
 
 // Save prompt
@@ -66,6 +67,7 @@ saveButton.addEventListener("click", () => {
     tags: promptTags.value.split(",").map((tag) => tag.trim()),
   };
 
+  promptList.innerHTML = "";
   savePrompt(prompt);
 
   // Clear form and reset focus
@@ -86,97 +88,84 @@ function renderPrompts(prompts) {
   } else {
     const textElement = document.createElement("div");
     textElement.innerText = "No prompt to show";
-    textElement.classList.add("text-center");
-    textElement.classList.add("my-4");
+    textElement.classList.add("text-center", "my-4", "prompt");
     promptList.appendChild(textElement);
   }
 }
 
 function renderPrompt(prompt) {
-  // Create the prompt element and add class
   const promptElement = document.createElement("div");
   promptElement.classList.add("prompt");
-  // promptElement.classList.add("hidden"); // Initially hide the prompt
 
-  // Create title element with text and category
+  const promptActions = document.createElement("div");
+  promptActions.classList.add("d-flex");
+
+  const promptContent = document.createElement("div");
+  promptContent.classList.add("prompt-content", "hidden");
+
   const titleElement = document.createElement("h3");
   titleElement.classList.add("prompt-title");
   titleElement.innerText = prompt.title;
 
-  // Create button to show/hide prompt details
   const showButton = document.createElement("button");
-  showButton.classList.add("show-btn");
-  showButton.classList.add("copy-btn");
+  showButton.classList.add("btn", "secondary", "shadow");
   showButton.innerText = "Show";
   showButton.addEventListener("click", () => {
-    promptElement.classList.toggle("hidden");
-    showButton.innerText = promptElement.classList.contains("hidden")
+    promptContent.classList.toggle("hidden");
+    showButton.innerText = promptContent.classList.contains("hidden")
       ? "Show"
       : "Hide";
   });
 
-  // Create element for prompt details
-  const promptText = document.createElement("div");
-  promptText.classList.add("prompt-text", "hidden"); // Initially hide details
-  promptText.innerText = prompt.text;
-
-  // Create element for prompt details
-  const detailsElement = document.createElement("div");
-  detailsElement.classList.add("prompt-details", "hidden"); // Initially hide details
-
-  // Add tags element with comma-separated tags
-  const tagsElement = document.createElement("span");
-  tagsElement.classList.add("tags");
-  tagsElement.innerText = prompt.tags.join(", ");
-  detailsElement.appendChild(tagsElement);
-
-  // Add copy button with functionality
+  // COPY Button
   const copyButton = document.createElement("button");
-  copyButton.classList.add("copy-btn");
+  copyButton.classList.add("btn", "success", "shadow");
   copyButton.innerText = "Copy";
   copyButton.addEventListener("click", () => {
     navigator.clipboard.writeText(prompt.text).then(() => {
       alert("Prompt copied successfully!");
     });
   });
-  detailsElement.appendChild(copyButton);
 
-  // Add delete button with confirmation
+  // DELETE button
   const deleteButton = document.createElement("button");
-  deleteButton.classList.add("delete-btn");
+  deleteButton.classList.add("btn", "danger", "shadow");
   deleteButton.innerText = "Delete";
   deleteButton.addEventListener("click", () => {
     const confirmation = confirm(
       "Are you sure you want to delete this prompt?"
     );
     if (!confirmation) return;
-
-    // Get the current prompts from storage
     chrome.storage.sync.get("prompts", (data) => {
       let prompts = data.prompts;
-
-      // Find the index of the prompt to delete
       const promptIndex = prompts.findIndex((p) => p.text === prompt.text);
-
-      // Remove the prompt from the array
       prompts.splice(promptIndex, 1);
-
-      // Save the updated array back to storage
       chrome.storage.sync.set({ prompts }, () => {
         alert("Prompt deleted successfully!");
-
-        // Update the UI by removing the prompt element
         promptElement.remove();
       });
     });
   });
-  detailsElement.appendChild(deleteButton);
 
-  // Append elements to the prompt element
+  // PROMPT text
+  const promptText = document.createElement("div");
+  promptText.innerText = prompt.text;
+
+  // TAGS
+  const tagsElement = document.createElement("span");
+  tagsElement.classList.add("tags");
+  tagsElement.innerText = prompt.tags.join(", ");
+
+  promptContent.appendChild(promptText);
+  // promptContent.appendChild(tagsElement);
+
+  promptActions.appendChild(showButton);
+  promptActions.appendChild(copyButton);
+  promptActions.appendChild(deleteButton);
+
   promptElement.appendChild(titleElement);
-  promptElement.appendChild(showButton);
-  promptElement.appendChild(promptText);
-  promptElement.appendChild(detailsElement);
+  promptElement.appendChild(promptActions);
+  promptElement.appendChild(promptContent);
 
   // Append the prompt element to the prompt list
   promptList.appendChild(promptElement);

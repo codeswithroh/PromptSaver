@@ -13,8 +13,21 @@
     />
   </head>
   <body>
+    <div class="navbar d-flex">
+      <div class="title d-flex">
+        <span
+          ><img
+            style="object-fit: contain; margin-right: 0.3em"
+            src="./logo_32.png"
+            alt="logo"
+        /></span>
+        <span>Prompt Manager</span>
+      </div>
+      <div class="search-icon">🔍</div>
+    </div>
+
     <div id="prompt-list"></div>
-    <button class="btn-primary" id="add-prompt-button">Add Prompt</button>
+    <button class="btn primary" id="add-prompt-button">Add Prompt</button>
     <div id="prompt-form">
       <h2 class="text-center no-margin">Add Prompt</h2>
       <label for="prompt-title">Title:</label>
@@ -46,8 +59,8 @@
         placeholder="e.g., creative writing, fiction"
         required
       />
-      <button id="save-prompt" class="btn-primary">Save</button>
-      <button class="btn-secondary" id="cancel-prompt">Cancel</button>
+      <button id="save-prompt" class="btn primary">Save</button>
+      <button class="btn secondary" id="cancel-prompt">Cancel</button>
     </div>
     <script src="popup.js"></script>
   </body>
