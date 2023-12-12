@@ -67,7 +67,7 @@ saveButton.addEventListener("click", () => {
     tags: promptTags.value.split(",").map((tag) => tag.trim()),
   };
 
-  promptList.innerHTML = "";
+  // promptList.innerHTML = "";
   savePrompt(prompt);
 
   // Clear form and reset focus
