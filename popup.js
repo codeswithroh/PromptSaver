@@ -23,6 +23,8 @@ cancelButton.addEventListener("click", () => {
 chrome.storage.sync.get((data) => {
   if (data.prompts) {
     renderPrompts(data.prompts);
+  } else {
+    promptList.innerHTML = "";
   }
 });
 
@@ -79,8 +81,6 @@ saveButton.addEventListener("click", () => {
 // ... (Implement logic to edit prompts, e.g., click event listener on prompt element)
 
 function renderPrompts(prompts) {
-  promptList.innerHTML = "";
-
   if (prompts.length) {
     prompts.forEach((prompt) => renderPrompt(prompt));
   } else {
@@ -93,43 +93,59 @@ function renderPrompts(prompts) {
 }
 
 function renderPrompt(prompt) {
+  // Create the prompt element and add class
   const promptElement = document.createElement("div");
   promptElement.classList.add("prompt");
+  // promptElement.classList.add("hidden"); // Initially hide the prompt
 
-  // Add text element
-  const textElement = document.createElement("p");
-  textElement.innerText = prompt.text;
-  promptElement.appendChild(textElement);
+  // Create title element with text and category
+  const titleElement = document.createElement("h3");
+  titleElement.classList.add("prompt-title");
+  titleElement.innerText = prompt.title;
 
-  // Add category element
-  const categoryElement = document.createElement("span");
-  categoryElement.classList.add("category");
-  categoryElement.innerText = prompt.category;
-  promptElement.appendChild(categoryElement);
+  // Create button to show/hide prompt details
+  const showButton = document.createElement("button");
+  showButton.classList.add("show-btn");
+  showButton.classList.add("copy-btn");
+  showButton.innerText = "Show";
+  showButton.addEventListener("click", () => {
+    promptElement.classList.toggle("hidden");
+    showButton.innerText = promptElement.classList.contains("hidden")
+      ? "Show"
+      : "Hide";
+  });
 
-  // Add tags element
+  // Create element for prompt details
+  const promptText = document.createElement("div");
+  promptText.classList.add("prompt-text", "hidden"); // Initially hide details
+  promptText.innerText = prompt.text;
+
+  // Create element for prompt details
+  const detailsElement = document.createElement("div");
+  detailsElement.classList.add("prompt-details", "hidden"); // Initially hide details
+
+  // Add tags element with comma-separated tags
   const tagsElement = document.createElement("span");
   tagsElement.classList.add("tags");
-  tagsElement.classList.add("px-4");
   tagsElement.innerText = prompt.tags.join(", ");
-  promptElement.appendChild(tagsElement);
+  detailsElement.appendChild(tagsElement);
 
-  // Add copy button
+  // Add copy button with functionality
   const copyButton = document.createElement("button");
+  copyButton.classList.add("copy-btn");
   copyButton.innerText = "Copy";
-  copyButton.className = "copy-btn";
   copyButton.addEventListener("click", () => {
     navigator.clipboard.writeText(prompt.text).then(() => {
       alert("Prompt copied successfully!");
     });
   });
-  promptElement.appendChild(copyButton);
+  detailsElement.appendChild(copyButton);
 
-  // Add delete button
+  // Add delete button with confirmation
   const deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-btn");
   deleteButton.innerText = "Delete";
   deleteButton.addEventListener("click", () => {
-    // Prompt confirmation before deleting
     const confirmation = confirm(
       "Are you sure you want to delete this prompt?"
     );
@@ -154,9 +170,15 @@ function renderPrompt(prompt) {
       });
     });
   });
+  detailsElement.appendChild(deleteButton);
 
-  promptElement.appendChild(deleteButton);
+  // Append elements to the prompt element
+  promptElement.appendChild(titleElement);
+  promptElement.appendChild(showButton);
+  promptElement.appendChild(promptText);
+  promptElement.appendChild(detailsElement);
 
+  // Append the prompt element to the prompt list
   promptList.appendChild(promptElement);
 }
 
