@@ -4,20 +4,25 @@ A simple chrome extension to save your prompts in your browser for easy access.
 
 ## Prompt View
 
-<img width="960" alt="image" src="https://github.com/codeswithroh/PromptSaver/assets/77570394/9a309ce6-f1e5-48b7-9724-047974501ab0">
+<img width="256" alt="image" src="https://github.com/codeswithroh/PromptSaver/assets/77570394/f57245d6-e881-4d87-9a58-faa8b53c6b1f">
 
-## Prompt Save
+<img width="259" alt="image" src="https://github.com/codeswithroh/PromptSaver/assets/77570394/084161f5-4438-440d-a74b-df8a1219db36">
 
-<img width="960" alt="image" src="https://github.com/codeswithroh/PromptSaver/assets/77570394/1c66f805-ba95-47b7-832e-25846623e9f0">
+
+
+## Prompt Add
+
+<img width="261" alt="image" src="https://github.com/codeswithroh/PromptSaver/assets/77570394/b905e12b-9917-4825-a6e8-dae1920f7300">
+
 
 ## TODO
 
-- [ ] Add a title for all the prompts
-- [x] Add a title field in the form
-- [ ] Update the prompts showing view
+- [X] Add a title for all the prompts
+- [X] Add a title field in the form
+- [X] Update the prompts showing view
 - [ ] Implement the dialog for the messages which will automatically disappear after 5 secs
-- [ ] Show proper message when prompts are saved
-- [ ] Show proper message when prompts are copied
+- [X] Show proper message when prompts are saved
+- [X] Show proper message when prompts are copied
 - [ ] Make the edit feature
 - [ ] Select text from any webpage, right click and it can be saved in the prompt
 - [ ] Add a search bar to search for a prompt
