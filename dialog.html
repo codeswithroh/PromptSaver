@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="dialog.css" />
+  <body class="dialog-body">
+    <h2>Add Prompt</h2>
+    <div id="dialog-form">
+      <label for="dialog-prompt-title">Title:</label>
+      <input
+        type="text"
+        id="dialog-prompt-title"
+        placeholder="What is the prompt for?"
+        required
+      />
+      <label for="dialog-prompt-text">Prompt:</label>
+      <textarea
+        id="dialog-prompt-text"
+        placeholder="Enter your prompt"
+        required
+      ></textarea>
+      <label for="dialog-prompt-category">Category:</label>
+      <select id="dialog-prompt-category">
+        <option value="school">School</option>
+        <option value="college">College</option>
+        <option value="work">Work</option>
+        <option value="fun">Fun</option>
+        <option value="others">Others</option>
+      </select>
+
+      <label for="dialog-prompt-tags">Tags (separate by commas):</label>
+      <input
+        type="text"
+        id="dialog-prompt-tags"
+        placeholder="e.g., work,coding"
+        required
+      />
+      <button id="dialog-save-prompt" class="btn primary">Save</button>
+      <button class="btn secondary" id="dialog-cancel-prompt">Cancel</button>
+    </div>
+
+    <script src="dialog.js"></script>
+  </body>
+</html>

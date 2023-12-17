@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prompts Manager</title>
+    <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="popup.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,11 +24,12 @@
         /></span>
         <span>Prompt Manager</span>
       </div>
-      <div class="search-icon">🔍</div>
+      <div class="search-icon">
+        <button class="btn primary" id="add-prompt-button">Add Prompt</button>
+      </div>
     </div>
 
-    <div id="prompt-list"></div>
-    <button class="btn primary" id="add-prompt-button">Add Prompt</button>
+    <!-- <button class="btn primary" id="add-prompt-button">Add Prompt</button> -->
     <div id="prompt-form">
       <h2 class="text-center no-margin">Add Prompt</h2>
       <label for="prompt-title">Title:</label>
@@ -39,6 +41,7 @@
       />
       <label for="prompt-text">Prompt:</label>
       <textarea
+        class="prompt-form-textarea"
         id="prompt-text"
         placeholder="Enter your prompt"
         required
@@ -61,7 +64,9 @@
       />
       <button id="save-prompt" class="btn primary">Save</button>
       <button class="btn secondary" id="cancel-prompt">Cancel</button>
+      <hr style="margin: 1em 0.5em; height: 2px" />
     </div>
+    <div id="prompt-list"></div>
     <script src="popup.js"></script>
   </body>
 </html>

@@ -4,11 +4,11 @@ const promptTitle = document.getElementById("prompt-title");
 const promptText = document.getElementById("prompt-text");
 const promptCategory = document.getElementById("prompt-category");
 const promptTags = document.getElementById("prompt-tags");
+const addPromptButton = document.getElementById("add-prompt-button");
 const saveButton = document.getElementById("save-prompt");
 const cancelButton = document.getElementById("cancel-prompt");
-const addPromptButton = document.getElementById("add-prompt-button");
 
-addPromptButton.addEventListener("click", () => {
+addPromptButton?.addEventListener("click", () => {
   const promptForm = document.getElementById("prompt-form");
   promptForm.style.display = "flex";
   addPromptButton.style.display = "none";
@@ -37,7 +37,7 @@ chrome.storage.sync.get((data) => {
     option.innerText = category;
     promptCategory.appendChild(option);
   });
-})(); // Load categories asynchronously
+})();
 
 function savePrompt(prompt) {
   chrome.storage.sync.get("prompts", (data) => {
@@ -151,13 +151,65 @@ function renderPrompt(prompt) {
   const promptText = document.createElement("div");
   promptText.innerText = prompt.text;
 
+  // Edit button
+  const editButton = document.createElement("button");
+  editButton.classList.add("outline-button", "outline-primary", "shadow");
+  editButton.innerText = "Edit";
+  editButton.addEventListener("click", () => {
+    promptContent.removeChild(editButton);
+
+    const textarea = document.createElement("textarea");
+    textarea.classList.add("prompt-form-textarea-edit");
+    textarea.value = prompt.text;
+
+    const saveButton = document.createElement("button");
+    saveButton.classList.add("outline-button", "outline-primary", "shadow");
+    saveButton.innerText = "Save";
+
+    const cancelButton = document.createElement("button");
+    cancelButton.classList.add("outline-button", "outline-accent", "shadow");
+    cancelButton.innerText = "Cancel";
+
+    cancelButton.addEventListener("click", () => {
+      promptContent.removeChild(textarea);
+      promptContent.removeChild(saveButton);
+      promptContent.removeChild(cancelButton);
+      promptContent.appendChild(promptText);
+      promptContent.appendChild(editButton);
+    });
+
+    saveButton.addEventListener("click", () => {
+      prompt.text = textarea.value;
+      promptText.innerText = textarea.value;
+
+      chrome.storage.sync.get("prompts", (data) => {
+        let prompts = data.prompts;
+        const promptIndex = prompts.findIndex((p) => p.text === prompt.text);
+        prompts.splice(promptIndex, 1, prompt);
+        chrome.storage.sync.set({ prompts }, () => {
+          alert("Prompt updated successfully!");
+        });
+      });
+
+      promptContent.removeChild(textarea);
+      promptContent.removeChild(saveButton);
+      promptContent.removeChild(cancelButton);
+      promptContent.appendChild(promptText);
+      promptContent.appendChild(editButton);
+    });
+
+    promptContent.replaceChild(textarea, promptText);
+    promptContent.appendChild(saveButton);
+    promptContent.appendChild(cancelButton);
+  });
+
   // TAGS
   const tagsElement = document.createElement("span");
   tagsElement.classList.add("tags");
   tagsElement.innerText = prompt.tags.join(", ");
 
   promptContent.appendChild(promptText);
-  // promptContent.appendChild(tagsElement);
+  promptContent.appendChild(editButton);
 
   promptActions.appendChild(showButton);
   promptActions.appendChild(copyButton);

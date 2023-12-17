@@ -3,7 +3,7 @@
   "name": "Prompts Manager",
   "description": "Save, organize, and manage your writing prompts.",
   "version": "1.0",
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["activeTab", "storage", "contextMenus"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Prompt Manager"
@@ -14,5 +14,17 @@
     "32": "logo_32.png",
     "48": "logo_48.png",
     "128": "logo_128.png"
-  }
+  },
+  "externally_connectable": {
+    "matches": ["*://*.google.com/*"]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["popup.js"]
+    }
+  ]
 }

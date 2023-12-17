@@ -1,17 +1,6 @@
-:root {
-  --background: #e4edf6;
-  --form: #dae4ee;
-  --text: #070d13;
-  --accent: #8f369b;
-  --primary: #26446d;
-  --secondary: #aa7bd1;
-  --success: #d7efe3;
-  --danger: #efd7e1;
-}
-
 body {
   border: 0;
-  width: 350px;
+  width: 380px;
   margin-top: 0;
   margin: 0;
   padding: 0;
@@ -22,78 +11,8 @@ body {
   color: var(--text);
 }
 
-.px-4 {
-  padding: 0 4px;
-}
-
-.hidden {
-  display: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-#add-prompt-button {
-  display: block;
-  margin: 0 auto 10px auto !important;
-  width: 90%;
-}
-
-.d-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* gap: 1em; */
-}
-
-.text-center {
-  display: block;
-  text-align: center;
-}
-
-.my-4 {
-  margin: 1em 0;
-}
-
-.no-margin {
-  margin: 0 !important;
-}
-
-.btn {
-  margin-top: 10px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  padding: 12px 2em;
-  cursor: pointer;
-}
-.primary {
-  background-color: var(--primary);
-  color: white;
-}
-.secondary {
-  background-color: var(--secondary);
-  color: white;
-}
-
-.success {
-  background-color: var(--success);
-}
-
-.danger {
-  background-color: var(--danger);
-}
-
-.shadow {
-  filter: drop-shadow(18px 15px 10px rgba(0, 0, 0, 0.01))
-    drop-shadow(10px 9px 8px rgba(0, 0, 0, 0.03))
-    drop-shadow(5px 4px 6px rgba(0, 0, 0, 0.04))
-    drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.05));
-}
-
 .popup {
-  width: 350px;
+  width: 380px;
   max-width: 80vw;
   margin: auto;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -137,6 +56,40 @@ button {
   font-size: 15px;
 }
 
+.outline-button {
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-top: 0.5em;
+}
+.outline-danger {
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  margin-left: 0.5em;
+}
+.outline-accent {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  margin-left: 0.5em;
+}
+.outline-success {
+  border: 1px solid var(--success);
+  color: var(--success);
+}
+.outline-primary {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+#add-prompt-button {
+  margin-top: 1em !important;
+  font-size: 0.8em;
+  white-space: nowrap;
+  padding: 12px 1em;
+  width: 10em;
+}
+
 #prompt-form {
   display: none;
   flex-direction: column;
@@ -149,11 +102,24 @@ button {
   margin-top: 12px;
 }
 
-#prompt-form textarea {
+.prompt-form-textarea {
   height: 100px;
   resize: none;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
+  padding: 8px 6px;
+  border-radius: 5px;
+  background-color: var(--form);
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.prompt-form-textarea-edit {
+  height: 100px;
+  width: 98%;
+  resize: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
   padding: 8px 6px;
   border-radius: 5px;
   background-color: var(--form);

@@ -1,0 +1,79 @@
+:root {
+  --background: #e4edf6;
+  --form: #dae4ee;
+  --text: #070d13;
+  --accent: #8f369b;
+  --primary: #26446d;
+  --secondary: #aa7bd1;
+  --success: #d7efe3;
+  --danger: #efd7e1;
+}
+.px-4 {
+  padding: 0 4px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+#add-prompt-button {
+  display: block;
+  margin: 0 auto 10px auto !important;
+  width: 90%;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 1em; */
+}
+
+.text-center {
+  display: block;
+  text-align: center;
+}
+
+.my-4 {
+  margin: 1em 0;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.btn {
+  margin-top: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 2em;
+  cursor: pointer;
+}
+.primary {
+  background-color: var(--primary);
+  color: white;
+}
+.secondary {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.success {
+  background-color: var(--success);
+}
+
+.danger {
+  background-color: var(--danger);
+}
+
+.shadow {
+  filter: drop-shadow(18px 15px 10px rgba(0, 0, 0, 0.01))
+    drop-shadow(10px 9px 8px rgba(0, 0, 0, 0.03))
+    drop-shadow(5px 4px 6px rgba(0, 0, 0, 0.04))
+    drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.05));
+}
