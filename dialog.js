@@ -24,7 +24,7 @@ function savePrompt(prompt) {
   });
 }
 
-saveButton.addEventListener("click", function () {
+saveButton?.addEventListener("click", function () {
   const prompt = {
     title: promptTitle.value,
     text: promptText.value,
@@ -41,6 +41,6 @@ saveButton.addEventListener("click", function () {
   promptText.focus();
 });
 
-cancelButton.addEventListener("click", () => {
+cancelButton?.addEventListener("click", () => {
   window.close();
 });

@@ -5,8 +5,8 @@ const promptText = document.getElementById("prompt-text");
 const promptCategory = document.getElementById("prompt-category");
 const promptTags = document.getElementById("prompt-tags");
 const addPromptButton = document.getElementById("add-prompt-button");
-const saveButton = document.getElementById("save-prompt");
 const cancelButton = document.getElementById("cancel-prompt");
+const saveButton = document.getElementById("save-prompt");
 
 addPromptButton?.addEventListener("click", () => {
   const promptForm = document.getElementById("prompt-form");
@@ -14,7 +14,7 @@ addPromptButton?.addEventListener("click", () => {
   addPromptButton.style.display = "none";
 });
 
-cancelButton.addEventListener("click", () => {
+cancelButton?.addEventListener("click", () => {
   promptForm.style.display = "none";
   addPromptButton.style.display = "block";
 });
@@ -55,7 +55,7 @@ function savePrompt(prompt) {
 }
 
 // Save prompt
-saveButton.addEventListener("click", () => {
+saveButton?.addEventListener("click", () => {
   if (!validatePrompt()) {
     return; // Display error message if validation fails
   }
@@ -110,7 +110,7 @@ function renderPrompt(prompt) {
   const showButton = document.createElement("button");
   showButton.classList.add("btn", "secondary", "shadow");
   showButton.innerText = "Show";
-  showButton.addEventListener("click", () => {
+  showButton?.addEventListener("click", () => {
     promptContent.classList.toggle("hidden");
     showButton.innerText = promptContent.classList.contains("hidden")
       ? "Show"
@@ -121,7 +121,7 @@ function renderPrompt(prompt) {
   const copyButton = document.createElement("button");
   copyButton.classList.add("btn", "success", "shadow");
   copyButton.innerText = "Copy";
-  copyButton.addEventListener("click", () => {
+  copyButton?.addEventListener("click", () => {
     navigator.clipboard.writeText(prompt.text).then(() => {
       alert("Prompt copied successfully!");
     });
@@ -131,7 +131,7 @@ function renderPrompt(prompt) {
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("btn", "danger", "shadow");
   deleteButton.innerText = "Delete";
-  deleteButton.addEventListener("click", () => {
+  deleteButton?.addEventListener("click", () => {
     const confirmation = confirm(
       "Are you sure you want to delete this prompt?"
     );
@@ -155,7 +155,7 @@ function renderPrompt(prompt) {
   const editButton = document.createElement("button");
   editButton.classList.add("outline-button", "outline-primary", "shadow");
   editButton.innerText = "Edit";
-  editButton.addEventListener("click", () => {
+  editButton?.addEventListener("click", () => {
     promptContent.removeChild(editButton);
 
     const textarea = document.createElement("textarea");
@@ -170,7 +170,7 @@ function renderPrompt(prompt) {
     cancelButton.classList.add("outline-button", "outline-accent", "shadow");
     cancelButton.innerText = "Cancel";
 
-    cancelButton.addEventListener("click", () => {
+    cancelButton?.addEventListener("click", () => {
       promptContent.removeChild(textarea);
       promptContent.removeChild(saveButton);
       promptContent.removeChild(cancelButton);
@@ -178,7 +178,7 @@ function renderPrompt(prompt) {
       promptContent.appendChild(editButton);
     });
 
-    saveButton.addEventListener("click", () => {
+    saveButton?.addEventListener("click", () => {
       prompt.text = textarea.value;
       promptText.innerText = textarea.value;
 
