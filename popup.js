@@ -7,6 +7,9 @@ const promptTags = document.getElementById("prompt-tags");
 const addPromptButton = document.getElementById("add-prompt-button");
 const cancelButton = document.getElementById("cancel-prompt");
 const saveButton = document.getElementById("save-prompt");
+const categoryList = document.getElementById("category-list");
+
+const categories = ["all", "coding", "study", "writing", "others"];
 
 addPromptButton?.addEventListener("click", () => {
   const promptForm = document.getElementById("prompt-form");
@@ -22,22 +25,12 @@ cancelButton?.addEventListener("click", () => {
 // Load saved prompts
 chrome.storage.sync.get((data) => {
   if (data.prompts) {
+    renderCategories();
     renderPrompts(data.prompts);
   } else {
     promptList.innerHTML = "";
   }
 });
-
-// Load categories
-(async () => {
-  const categories = await getCategories(); // Implement logic to get categories from API or source
-  categories.forEach((category) => {
-    const option = document.createElement("option");
-    option.value = category;
-    option.innerText = category;
-    promptCategory.appendChild(option);
-  });
-})();
 
 function savePrompt(prompt) {
   chrome.storage.sync.get("prompts", (data) => {
@@ -79,12 +72,59 @@ saveButton?.addEventListener("click", () => {
   renderPrompt(prompt);
 });
 
-// Handle prompt editing
-// ... (Implement logic to edit prompts, e.g., click event listener on prompt element)
+function renderCategories() {
+  if (categories.length) {
+    categoryList.innerHTML = "";
 
-function renderPrompts(prompts) {
+    categories.forEach((category, index) => {
+      const categoryElement = document.createElement("span");
+      categoryElement.innerText = category;
+      categoryElement.classList.add("category-pill");
+      categoryList.appendChild(categoryElement);
+
+      categoryElement.addEventListener("click", () => {
+        categoryList.querySelectorAll(".category-pill").forEach((element) => {
+          element.style.backgroundColor = "";
+          element.style.color = "";
+        });
+
+        categoryElement.style.backgroundColor = "#8f369b";
+        categoryElement.style.color = "white";
+
+        promptList.innerHTML = "";
+        chrome.storage.sync.get((data) => {
+          if (data.prompts) {
+            renderPrompts(data.prompts, categoryElement.innerText);
+          } else {
+            promptList.innerHTML = "";
+          }
+        });
+      });
+
+      if (index === 0) {
+        categoryElement.style.backgroundColor = "#8f369b";
+        categoryElement.style.color = "white";
+      }
+    });
+  } else {
+    const textElement = document.createElement("div");
+    textElement.innerText = "No category to show";
+    textElement.classList.add("text-center", "my-4", "category");
+    categoryList.appendChild(textElement);
+  }
+}
+
+function renderPrompts(prompts, category = "all") {
   if (prompts.length) {
-    prompts.forEach((prompt) => renderPrompt(prompt));
+    prompts.forEach((prompt) => {
+      if (category === "all") {
+        renderPrompt(prompt);
+      }
+
+      if (prompt.category === category) {
+        renderPrompt(prompt);
+      }
+    });
   } else {
     const textElement = document.createElement("div");
     textElement.innerText = "No prompt to show";
@@ -230,9 +270,7 @@ function validatePrompt() {
 }
 
 async function getCategories() {
-  // Implement logic to retrieve categories from API or source
-  // e.g., using fetch API or accessing a JSON file
-  return []; // Replace this with actual category data
+  return [];
 }
 
 // ... (Additional functions for prompt editing)

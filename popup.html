@@ -28,6 +28,7 @@
         <button class="btn primary" id="add-prompt-button">Add Prompt</button>
       </div>
     </div>
+    <hr style="margin: 0.2em 0.5em 1.5em 0.5em; height: 2px" />
 
     <!-- <button class="btn primary" id="add-prompt-button">Add Prompt</button> -->
     <div id="prompt-form">
@@ -48,10 +49,9 @@
       ></textarea>
       <label for="prompt-category">Category:</label>
       <select id="prompt-category">
-        <option value="school">School</option>
-        <option value="college">College</option>
-        <option value="work">Work</option>
-        <option value="fun">Fun</option>
+        <option value="study">Study</option>
+        <option value="writing">Writing</option>
+        <option value="coding">Coding</option>
         <option value="others">Others</option>
       </select>
 
@@ -66,6 +66,8 @@
       <button class="btn secondary" id="cancel-prompt">Cancel</button>
       <hr style="margin: 1em 0.5em; height: 2px" />
     </div>
+    <div id="category-list"></div>
+
     <div id="prompt-list"></div>
     <script src="popup.js"></script>
   </body>
