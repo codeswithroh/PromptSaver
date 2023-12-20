@@ -53,6 +53,7 @@ button {
   border-radius: 5px;
   padding: 12px 2em;
   cursor: pointer;
+  background-color: transparent;
 }
 .primary {
   background-color: var(--primary);

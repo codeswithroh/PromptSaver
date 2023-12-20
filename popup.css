@@ -1,6 +1,6 @@
 body {
   border: 0;
-  width: 380px;
+  width: 400px;
   margin-top: 0;
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
 }
 
 .popup {
-  width: 380px;
+  width: 400px;
   max-width: 80vw;
   margin: auto;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -72,6 +72,31 @@ body {
   cursor: pointer;
 }
 
+.button-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2.5em 0.5em;
+}
+
+#settings-button {
+  margin: 0 0 0 0.5em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 0.7em;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.dialog-menu {
+  border: none;
+  background-color: var(--background);
+  border-radius: 10px;
+  padding: 1em 2em;
+}
+
 .outline-button {
   background-color: transparent;
   border-radius: 5px;
@@ -83,6 +108,10 @@ body {
   border: 1px solid var(--danger);
   color: var(--danger);
   margin-left: 0.5em;
+}
+.outline-warning {
+  border: 1px solid #ff0000;
+  color: #ff0000;
 }
 .outline-accent {
   border: 1px solid var(--accent);

@@ -1,10 +1,16 @@
-chrome.contextMenus.removeAll(function () {
-  chrome.contextMenus.create({
-    title: "Add to Prompt",
-    contexts: ["selection"],
-    id: "addToPrompt",
+if (chrome.contextMenus) {
+  chrome.contextMenus.removeAll(function () {
+    if (chrome.runtime.lastError) {
+      console.error(chrome.runtime.lastError);
+    } else {
+      chrome.contextMenus.create({
+        title: "Add to Prompt",
+        contexts: ["selection"],
+        id: "addToPrompt",
+      });
+    }
   });
-});
+}
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "addToPrompt") {
@@ -23,6 +29,15 @@ function handleAddToPrompt(selectedText) {
     height: 530,
   });
 }
+
+const feedbackFormUrl = "https://example.com/feedback";
+chrome.runtime.setUninstallURL(feedbackFormUrl, () => {
+  if (chrome.runtime.lastError) {
+    console.error("Error setting uninstall URL: ", chrome.runtime.lastError);
+  } else {
+    console.log("Uninstall URL set successfully.");
+  }
+});
 
 // In your content script
 // chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

@@ -6,8 +6,100 @@ const promptCategory = document.getElementById("prompt-category");
 const promptTags = document.getElementById("prompt-tags");
 const addPromptButton = document.getElementById("add-prompt-button");
 const cancelButton = document.getElementById("cancel-prompt");
+const settingsButton = document.getElementById("settings-button");
 const saveButton = document.getElementById("save-prompt");
 const categoryList = document.getElementById("category-list");
+
+settingsButton.addEventListener("click", function () {
+  // Create a dialog element
+  var dialog = document.createElement("dialog");
+  dialog.classList.add("dialog-menu");
+  dialog.style.position = "relative";
+
+  var closeButton = document.createElement("button");
+  closeButton.textContent = "X";
+  closeButton.style.position = "absolute";
+  closeButton.style.right = "10px";
+  closeButton.style.top = "10px";
+  closeButton.classList.add("outline-button", "outline-warning", "shadow");
+  closeButton.addEventListener("click", function () {
+    dialog.close();
+  });
+  dialog.appendChild(closeButton);
+
+  const buttonLayout = document.createElement("div");
+  buttonLayout.classList.add("button-layout");
+
+  // Create export button
+  var exportButton = document.createElement("button");
+  exportButton.classList.add("btn", "primary", "shadow");
+  exportButton.id = "exportButton";
+  exportButton.textContent = "Export";
+
+  // Create import button
+  var importButton = document.createElement("button");
+  importButton.classList.add("btn", "secondary", "shadow");
+  importButton.id = "importButton";
+  importButton.textContent = "Import";
+
+  buttonLayout.appendChild(exportButton);
+  buttonLayout.appendChild(importButton);
+
+  dialog.appendChild(buttonLayout);
+
+  document.body.appendChild(dialog);
+  dialog.showModal();
+
+  document
+    .getElementById("exportButton")
+    .addEventListener("click", function () {
+      chrome.storage.sync.get("prompts", function (data) {
+        var prompts = data.prompts;
+        var csvContent = "title,prompt,category\n";
+        prompts.forEach(function (prompt) {
+          csvContent +=
+            prompt.title + "," + prompt.text + "," + prompt.category + "\n";
+        });
+
+        var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.setAttribute("href", url);
+        link.setAttribute("download", "prompts.csv");
+        link.click();
+      });
+    });
+
+  // Handle import
+  document
+    .getElementById("importButton")
+    .addEventListener("click", function () {
+      var input = document.createElement("input");
+      input.type = "file";
+      input.accept = ".csv";
+      input.onchange = function (event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var contents = e.target.result;
+          var lines = contents.split("\n");
+          lines.forEach(function (line, index) {
+            if (index > 0 && line) {
+              // Skip the header
+              var parts = line.split(",");
+              prompts.push({
+                title: parts[0],
+                prompt: parts[1],
+                category: parts[2],
+              });
+            }
+          });
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    });
+});
 
 const categories = ["all", "coding", "study", "writing", "others"];
 
