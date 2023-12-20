@@ -115,17 +115,19 @@ function renderCategories() {
 }
 
 function renderPrompts(prompts, category = "all") {
-  if (prompts.length) {
-    prompts.forEach((prompt) => {
-      if (category === "all") {
-        renderPrompt(prompt);
-      }
+  let promptFound = false;
 
-      if (prompt.category === category) {
-        renderPrompt(prompt);
-      }
-    });
-  } else {
+  prompts.forEach((prompt) => {
+    if (category === "all") {
+      renderPrompt(prompt);
+      promptFound = true;
+    } else if (prompt.category === category) {
+      renderPrompt(prompt);
+      promptFound = true;
+    }
+  });
+
+  if (!promptFound) {
     const textElement = document.createElement("div");
     textElement.innerText = "No prompt to show";
     textElement.classList.add("text-center", "my-4", "prompt");
