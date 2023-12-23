@@ -1,12 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Prompts Manager",
+  "name": "PromptVault",
   "description": "Save, organize, and manage your writing prompts.",
   "version": "1.0",
   "permissions": ["activeTab", "storage", "contextMenus"],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Prompt Manager"
+    "default_title": "PromptVault"
   },
   "icons": {
     "16": "logo_16.png",

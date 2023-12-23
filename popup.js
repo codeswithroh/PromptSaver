@@ -29,28 +29,51 @@ window.onload = function () {
       });
       dialog.appendChild(closeButton);
 
+      const title = document.createElement("h2");
+      title.textContent = "Settings";
+      title.classList.add("text-center");
+      dialog.appendChild(title);
+
       const buttonLayout = document.createElement("div");
       buttonLayout.classList.add("button-layout");
 
       // Create export button
       var exportButton = document.createElement("button");
-      exportButton.classList.add("btn", "primary", "shadow");
+      exportButton.classList.add("btn", "primary", "shadow", "custom-button");
       exportButton.id = "exportButton";
-      exportButton.textContent = "Export";
+      exportButton.textContent = "Export Prompsts to CSV";
 
       // Create import button
       var importButton = document.createElement("button");
-      importButton.classList.add("btn", "secondary", "shadow");
+      importButton.classList.add("btn", "secondary", "shadow", "custom-button");
       importButton.id = "importButton";
-      importButton.textContent = "Import";
+      importButton.textContent = "Import Promps from CSV";
+
+      // create a send feedback button
+      var sendFeedbackButton = document.createElement("button");
+      sendFeedbackButton.classList.add(
+        "btn",
+        "dark",
+        "shadow",
+        "custom-button"
+      );
+      sendFeedbackButton.id = "sendFeedbackButton";
+      sendFeedbackButton.textContent = "Send Feedback";
 
       buttonLayout.appendChild(exportButton);
       buttonLayout.appendChild(importButton);
+      buttonLayout.appendChild(sendFeedbackButton);
 
       dialog.appendChild(buttonLayout);
 
       document.body.appendChild(dialog);
       dialog.showModal();
+
+      document
+        .getElementById("sendFeedbackButton")
+        .addEventListener("click", function () {
+          chrome.tabs.create({ url: "https://forms.gle/XZ7ZfpSXkz2LJAMdA" });
+        });
 
       document
         .getElementById("exportButton")
