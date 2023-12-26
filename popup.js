@@ -109,8 +109,6 @@ window.onload = function () {
           var input = document.createElement("input");
           input.type = "file";
           input.accept = ".csv";
-          // input.style.display = "none"; // Hide the input element
-          // document.body.appendChild(input); // Append it to the body
           input.onchange = function (event) {
             var file = event.target.files[0];
             var reader = new FileReader();
@@ -142,8 +140,6 @@ window.onload = function () {
                     text: parts[1],
                     category: parts[2],
                   };
-                  // alert(prompt.category);
-                  // savePromptsSequentially(lines, index + 1);
                   chrome.storage.sync.get("prompts", (data) => {
                     let prompts = data.prompts || [];
                     prompts.push(prompt);
@@ -179,7 +175,6 @@ window.onload = function () {
     addPromptButton.style.display = "block";
   });
 
-  // Load saved prompts
   chrome.storage.sync.get((data) => {
     if (data.prompts) {
       renderCategories();
@@ -193,7 +188,6 @@ window.onload = function () {
     chrome.storage.sync.get("prompts", (data) => {
       let prompts = data.prompts || [];
 
-      // Add the new prompt to the array
       prompts.push(prompt);
 
       chrome.storage.sync.set({ prompts: prompts }, () => {
@@ -204,12 +198,7 @@ window.onload = function () {
     addPromptButton.style.display = "block";
   }
 
-  // Save prompt
   saveButton?.addEventListener("click", () => {
-    if (!validatePrompt()) {
-      return;
-    }
-
     const prompt = {
       title: promptTitle.value,
       text: promptText.value,
@@ -217,10 +206,8 @@ window.onload = function () {
       tags: promptTags.value.split(",").map((tag) => tag.trim()),
     };
 
-    // promptList.innerHTML = "";
     savePrompt(prompt);
 
-    // Clear form and reset focus
     promptTitle.value = "";
     promptText.value = "";
     promptTags.value = "";
@@ -418,17 +405,6 @@ window.onload = function () {
     promptElement.appendChild(promptActions);
     promptElement.appendChild(promptContent);
 
-    // Append the prompt element to the prompt list
     promptList.appendChild(promptElement);
-  }
-
-  function validatePrompt() {
-    // Implement logic to validate prompt text and tags
-    // e.g., check if text is empty or tags are invalid
-    return true; // Replace this with actual validation logic
-  }
-
-  async function getCategories() {
-    return [];
   }
 };

@@ -39,6 +39,8 @@ chrome.runtime.setUninstallURL(feedbackFormUrl, () => {
   }
 });
 
+chrome.runtime.setUninstallURL("https://forms.gle/ckX2adtTPPGztujN8");
+
 // In your content script
 // chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 //   if (message.message !== "") {
