@@ -37,19 +37,16 @@ window.onload = function () {
       const buttonLayout = document.createElement("div");
       buttonLayout.classList.add("button-layout");
 
-      // Create export button
       var exportButton = document.createElement("button");
       exportButton.classList.add("btn", "primary", "shadow", "custom-button");
       exportButton.id = "exportButton";
-      exportButton.textContent = "Export Prompsts to CSV";
+      exportButton.textContent = "Export Prompts to CSV";
 
-      // Create import button
       var importButton = document.createElement("button");
       importButton.classList.add("btn", "secondary", "shadow", "custom-button");
       importButton.id = "importButton";
       importButton.textContent = "Import Promps from CSV";
 
-      // create a send feedback button
       var sendFeedbackButton = document.createElement("button");
       sendFeedbackButton.classList.add(
         "btn",
@@ -102,7 +99,6 @@ window.onload = function () {
           });
         });
 
-      // Handle import
       document
         .getElementById("importButton")
         .addEventListener("click", function () {
@@ -303,7 +299,6 @@ window.onload = function () {
         : "Hide";
     });
 
-    // COPY Button
     const copyButton = document.createElement("button");
     copyButton.classList.add("btn", "success", "shadow");
     copyButton.innerText = "Copy";
@@ -313,7 +308,6 @@ window.onload = function () {
       });
     });
 
-    // DELETE button
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("btn", "danger", "shadow");
     deleteButton.innerText = "Delete";
